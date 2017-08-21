@@ -11,6 +11,7 @@ while True:
     c, addr = s.accept()
     c.send("connected".encode())
     data = c.recv(2048).decode()
-    print("%s says: addr: %s port:%d" % (data, addr[0], addr[1]))
+    localtime = time.asctime(time.localtime(time.time()))
+    print("At {} %s says: addr: %s port:%d".format(localtime) % (data, addr[0], addr[1]))
     c.close()
     time.sleep(60)
