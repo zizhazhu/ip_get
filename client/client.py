@@ -4,12 +4,13 @@ import random
 
 host = '127.0.0.1'
 port = 12345
+name = 'test'
+
+udp_client = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
 while True:
-    s = socket.socket()
-    s.connect((host, port))
-    connect = s.recv(2048).decode()
-    if connect == 'connected':
-        s.send('pi'.encode())
-    s.close()
-    time.sleep(1800 + random.randint(10, 100))
+    data = name.encode()
+    udp_client.sendto(data, (host, port))
+    time.sleep(0 + random.randint(10, 100))
+
+udp_client.close()
